@@ -14,12 +14,18 @@ class Playlist {
     this.external_urls = object.external_urls;
     this.href = object.href;
     this.id = object.id;
-    this.images = object.images ? this.makeImages(object.images) : null;
+    this.images =
+      object.images && Array.isArray(object.images)
+        ? this.makeImages(object.images)
+        : null;
     this.name = object.name;
     this.owner = object.owner ? this.makeUser(object.owner) : null;
     this.public = object.public;
     this.snapshot_id = object.snapshot_id;
-    this.tracks = object.tracks ? this.makeTracks(object.tracks) : null;
+    this.tracks =
+      object.tracks && Array.isArray(object.tracks)
+        ? this.makeTracks(object.tracks)
+        : null;
     this.type = object.type;
     this.uri = object.uri;
   }

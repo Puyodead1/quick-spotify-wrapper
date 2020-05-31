@@ -11,7 +11,10 @@ class User {
     this.external_urls = object.external_urls;
     this.href = object.href;
     this.id = object.id;
-    this.images = object.images ? this.makeImages(object.images) : null;
+    this.images =
+      object.images && Array.isArray(object.images)
+        ? this.makeImages(object.images)
+        : null;
     this.type = object.type;
     this.uri = object.uri;
   }

@@ -8,7 +8,10 @@ class Track {
    */
   constructor(object) {
     this.album = null;
-    this.artists = object.artists ? this.makeArtists(object.artists) : null;
+    this.artists =
+      object.artists && Array.isArray(object.artists)
+        ? this.makeArtists(object.artists)
+        : null;
     this.available_markets = object.available_markets;
     this.disk_number = object.disk_number;
     this.duration_ms = object.duration_ms;

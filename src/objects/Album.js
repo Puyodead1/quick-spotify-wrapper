@@ -11,20 +11,30 @@ class Album {
    */
   constructor(object) {
     this.album_type = object.album_type;
-    this.artists = object.artists ? this.makeArtists(object.artists) : null;
+    this.artists =
+      object.artists && Array.isArray(object.artists)
+        ? this.makeArtists(object.artists)
+        : null;
     this.available_markets = object.available_markets;
-    this.copyrights = object.copyrights
-      ? this.makeCopyrights(object.copyrights)
-      : null;
+    this.copyrights =
+      object.copyrights && Array.isArray(object.copyrights)
+        ? this.makeCopyrights(object.copyrights)
+        : null;
     this.genres = object.genres;
     this.href = object.href;
     this.id = object.id;
-    this.images = object.images ? this.makeImages(object.images) : null;
+    this.images =
+      object.images && Array.isArray(object.images)
+        ? this.makeImages(object.images)
+        : null;
     this.name = object.name;
     this.popularity = object.popularity;
     this.release_date = object.release_date;
     this.release_date_precision = object.release_date_precision;
-    this.tracks = object.tracks ? this.makeTracks(object.tracks.items) : null;
+    this.tracks =
+      object.tracks && Array.isArray(object.tracks)
+        ? this.makeTracks(object.tracks.items)
+        : null;
     this.type = object.type;
     this.uri = object.uri;
   }
