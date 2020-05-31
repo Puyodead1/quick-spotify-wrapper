@@ -147,7 +147,7 @@ class Browse {
    * @param {String} seedGenres array of genres; max 5; See https://developer.spotify.com/documentation/web-api/reference/browse/get-recommendations/#available-genre-seeds
    * @param {Array} seedTracks array of track ids; max 5
    * @param {Array} target For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
-   * @returns N/A
+   * @returns Array of tracks
    *
    * {@link https://developer.spotify.com/documentation/web-api/reference/browse/get-recommendations/}
    */
