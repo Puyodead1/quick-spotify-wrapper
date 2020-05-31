@@ -19,8 +19,7 @@ jobs:
           recurse: true
           output_dir: ./docs
           front_page: README.md
-          template: ink-docstrap
-          template_dir: ./node_modules/ink-docstrap/template
+          template: minami
           config_file: config.json
 
       - name: Deploy
