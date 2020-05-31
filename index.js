@@ -1,3 +1,1 @@
-module.exports = {
-  Spotify: require("./src/Spotify"),
-};
+module.exports = require("./src/Spotify");
