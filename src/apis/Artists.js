@@ -93,11 +93,11 @@ module.exports = module.exports = class Artists {
 
   /**
    * Get Spotify catalog information for several artists based on their Spotify IDs.
-   * @param  {...String} ids array of artist ids
+   * @param  {Array} ids array of artist ids
    * @returns array of artists; Max 50
    * @external https://developer.spotify.com/documentation/web-api/reference/artists/get-several-artists/
    */
-  getArtists(...ids) {
+  getArtists(ids) {
     return new Promise((resolve, reject) => {
       this.spotify
         .makeRequest(`/artists?ids=${ids.join(",")}`)

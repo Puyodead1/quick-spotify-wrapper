@@ -4,8 +4,12 @@ const Albums = require("./apis/Albums");
 const Artists = require("./apis/Artists");
 const Browse = require("./apis/Browse");
 const Playlists = require("./apis/Playlists");
-const Search = require("./apis/Search");
 const Tracks = require("./apis/Tracks");
+
+const Album = require("./objects/Album");
+const Artist = require("./objects/Artist");
+const Playlist = require("./objects/Playlist");
+const Track = require("./objects/Track");
 
 module.exports = class Spotify {
   constructor(clientID, clientSecret) {
@@ -16,7 +20,6 @@ module.exports = class Spotify {
     this.artists = null;
     this.browse = null;
     this.playlists = null;
-    this.search = null;
     this.tracks = null;
     this.authenticated = false;
 
@@ -46,7 +49,6 @@ module.exports = class Spotify {
           this.artists = new Artists(this);
           this.browse = new Browse(this);
           this.playlists = new Playlists(this);
-          this.search = new Search(this);
           this.tracks = new Tracks(this);
           resolve();
         })
@@ -79,6 +81,44 @@ module.exports = class Spotify {
         .then((res) => {
           if (res.error) reject(res);
           resolve(res);
+        })
+        .catch((error) => reject(error));
+    });
+  }
+
+  /**
+   *
+   * @param {String} q the search query
+   * @param {Number} limit max number of results to return; default: 20, min: 1, max: 50; *LIMIT IS APPLIED FOR EACH TYPE, NOT TOTAL RESPONSE*
+   * @param {Array} type list of types to search for
+   * @returns Object of arrays for each type
+   * @external https://developer.spotify.com/documentation/web-api/reference/search/search/
+   */
+  search(q, limit, types) {
+    return new Promise((resolve, reject) => {
+      this.makeRequest(`/search?q=${q}&type=${types.join(",")}&limit=${limit}`)
+        .then((res) => {
+          const results = {};
+          types.forEach((type) => {
+            results[`${type}s`] = [];
+            res[`${type}s`].items.forEach((item) => {
+              switch (type) {
+                case "album":
+                  results[`${type}s`].push(new Album(item));
+                  break;
+                case "artist":
+                  results[`${type}s`].push(new Artist(item));
+                  break;
+                case "playlist":
+                  results[`${type}s`].push(new Playlist(item));
+                  break;
+                case "track":
+                  results[`${type}s`].push(new Track(item));
+                  break;
+              }
+            });
+          });
+          resolve(results);
         })
         .catch((error) => reject(error));
     });

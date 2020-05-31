@@ -25,11 +25,11 @@ module.exports = class Albums {
 
   /**
    * Gets spotify catalog information for multiple albums identified by their spotify ids
-   * @param {...String} ids of album ids; Max 20
+   * @param {Array} ids of album ids; Max 20
    * @returns Promise<obj>
    * @external https://developer.spotify.com/documentation/web-api/reference/albums/get-several-albums/
    */
-  getAlbums(...ids) {
+  getAlbums(ids) {
     return new Promise((resolve, reject) => {
       this.spotify
         .makeRequest(`/albums?ids=${ids.join(",")}`)
