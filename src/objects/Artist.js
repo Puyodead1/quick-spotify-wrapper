@@ -1,4 +1,9 @@
-module.exports = class Artist {
+class Artist {
+  /**
+   * creates a new artist
+   * @constructor
+   * @param {Object} object
+   */
   constructor(object) {
     this.external_urls = object.external_urls;
     this.href = object.href;
@@ -7,4 +12,6 @@ module.exports = class Artist {
     this.type = object.type;
     this.uri = object.uri;
   }
-};
+}
+
+module.exports = Artist;

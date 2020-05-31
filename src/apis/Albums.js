@@ -1,7 +1,11 @@
 const Album = require("../objects/Album");
 const Track = require("../objects/Track");
-
-module.exports = class Albums {
+class Albums {
+  /**
+   * Creates a new Albums instance
+   * @constructor
+   * @param {Spotify} spotify
+   */
   constructor(spotify) {
     this.spotify = spotify;
   }
@@ -10,7 +14,8 @@ module.exports = class Albums {
    * Get Spotify catalog information for a single album.
    * @param {String} album id
    * @returns Promise<obj>
-   * @external https://developer.spotify.com/documentation/web-api/reference/albums/get-album/
+   *
+   * {@link https://developer.spotify.com/documentation/web-api/reference/albums/get-album/}
    */
   getAlbum(id) {
     return new Promise((resolve, reject) => {
@@ -27,7 +32,8 @@ module.exports = class Albums {
    * Gets spotify catalog information for multiple albums identified by their spotify ids
    * @param {Array} ids of album ids; Max 20
    * @returns Promise<obj>
-   * @external https://developer.spotify.com/documentation/web-api/reference/albums/get-several-albums/
+   *
+   * {@link https://developer.spotify.com/documentation/web-api/reference/albums/get-several-albums/}
    */
   getAlbums(ids) {
     return new Promise((resolve, reject) => {
@@ -49,12 +55,13 @@ module.exports = class Albums {
    * @param {String} id album id
    * @param {Number} limit Min: 1; Max: 50; Default: 20
    * @returns Array of tracks
-   * @external https://developer.spotify.com/documentation/web-api/reference/albums/get-albums-tracks/
+   *
+   * {@link https://developer.spotify.com/documentation/web-api/reference/albums/get-albums-tracks/}
    */
   getAlbumTracks(id, limit = 20) {
     return new Promise((resolve, reject) => {
       this.spotify
-        .makeRequest(`albums/${id}/tracks`)
+        .makeRequest(`albums/${id}/tracks?limit=${limit}`)
         .then((res) => {
           const trackList = [];
           res.items.forEach((track) => {
@@ -65,4 +72,6 @@ module.exports = class Albums {
         .catch((error) => reject(error));
     });
   }
-};
+}
+
+module.exports = Albums;

@@ -2,7 +2,12 @@ const Image = require("./Image");
 const User = require("./User");
 const Track = require("./Track");
 
-module.exports = class Playlist {
+class Playlist {
+  /**
+   * creates a new playlist
+   * @constructor
+   * @param {Object} object
+   */
   constructor(object) {
     this.collaborative = object.collaborative;
     this.description = object.description;
@@ -38,4 +43,6 @@ module.exports = class Playlist {
     });
     return trackList;
   }
-};
+}
+
+module.exports = Playlist;

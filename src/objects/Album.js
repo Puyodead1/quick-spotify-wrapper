@@ -3,7 +3,12 @@ const Copyright = require("./Copyright");
 const Image = require("./Image");
 const Track = require("./Track");
 
-module.exports = class Album {
+class Album {
+  /**
+   * Creates a new Album
+   * @constructor
+   * @param {Object} object
+   */
   constructor(object) {
     this.album_type = object.album_type;
     this.artists = object.artists ? this.makeArtists(object.artists) : null;
@@ -59,4 +64,6 @@ module.exports = class Album {
     });
     return tracksList;
   }
-};
+}
+
+module.exports = Album;

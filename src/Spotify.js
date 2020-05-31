@@ -11,7 +11,13 @@ const Artist = require("./objects/Artist");
 const Playlist = require("./objects/Playlist");
 const Track = require("./objects/Track");
 
-module.exports = class Spotify {
+/** Main client */
+class Spotify {
+  /**
+   * Creates a new spotify instance
+   * @param {String} clientID spotify client id
+   * @param {String} clientSecret spotify client sercret
+   */
   constructor(clientID, clientSecret) {
     this._clientID = clientID;
     this._clientSecret = clientSecret;
@@ -28,6 +34,7 @@ module.exports = class Spotify {
 
   /**
    * Attempts to log the client in and obtain a token
+   * @async
    * @returns Promise
    */
   async login() {
@@ -87,12 +94,13 @@ module.exports = class Spotify {
   }
 
   /**
-   *
-   * @param {String} q the search query
-   * @param {Number} limit max number of results to return; default: 20, min: 1, max: 50; *LIMIT IS APPLIED FOR EACH TYPE, NOT TOTAL RESPONSE*
-   * @param {Array} type list of types to search for
+   * Searches Spotify API
+   * @param {String} q - the search query
+   * @param {Number} limit - max number of results to return; default: 20, min: 1, max: 50; *LIMIT IS APPLIED FOR EACH TYPE, NOT TOTAL RESPONSE*
+   * @param {Array} type - list of types to search for
    * @returns Object of arrays for each type
-   * @external https://developer.spotify.com/documentation/web-api/reference/search/search/
+   *
+   * {@link https://developer.spotify.com/documentation/web-api/reference/search/search/}
    */
   search(q, limit, types) {
     return new Promise((resolve, reject) => {
@@ -123,4 +131,6 @@ module.exports = class Spotify {
         .catch((error) => reject(error));
     });
   }
-};
+}
+
+module.exports = Spotify;

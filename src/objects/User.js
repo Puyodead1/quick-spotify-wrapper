@@ -1,6 +1,11 @@
 const Image = require("./Image");
 
-module.exports = class User {
+class User {
+  /**
+   * creates a new user
+   * @constructor
+   * @param {Object} object
+   */
   constructor(object) {
     this.display_name = object.display_name;
     this.external_urls = object.external_urls;
@@ -18,4 +23,6 @@ module.exports = class User {
     });
     return imageList;
   }
-};
+}
+
+module.exports = User;
