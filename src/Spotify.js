@@ -5,6 +5,7 @@ const Artists = require("./apis/Artists");
 const Browse = require("./apis/Browse");
 const Playlists = require("./apis/Playlists");
 const Tracks = require("./apis/Tracks");
+const Users = require("./apis/Users");
 
 const Album = require("./objects/Album");
 const Artist = require("./objects/Artist");
@@ -27,6 +28,7 @@ class Spotify {
     this.browse = null;
     this.playlists = null;
     this.tracks = null;
+    this.users = null;
     this.authenticated = false;
 
     this.API_BASE = "https://api.spotify.com/v1";
@@ -57,6 +59,7 @@ class Spotify {
           this.browse = new Browse(this);
           this.playlists = new Playlists(this);
           this.tracks = new Tracks(this);
+          this.users = new Users(this);
           resolve();
         })
         .catch((error) => {

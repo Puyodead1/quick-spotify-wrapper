@@ -31,7 +31,7 @@ class Albums {
   /**
    * Gets spotify catalog information for multiple albums identified by their spotify ids
    * @param {Array} ids of album ids; Max 20
-   * @returns Promise<obj>
+   * @returns array of albums
    *
    * {@link https://developer.spotify.com/documentation/web-api/reference/albums/get-several-albums/}
    */

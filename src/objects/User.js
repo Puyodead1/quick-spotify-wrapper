@@ -9,6 +9,7 @@ class User {
   constructor(object) {
     this.display_name = object.display_name;
     this.external_urls = object.external_urls;
+    this.followers = object.followers;
     this.href = object.href;
     this.id = object.id;
     this.images =
