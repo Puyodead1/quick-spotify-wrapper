@@ -2,3 +2,4 @@ node_modules
 test.js
 gh-pages
 gh-pages.pub
+.vscode
