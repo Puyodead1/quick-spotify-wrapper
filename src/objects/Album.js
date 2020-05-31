@@ -39,10 +39,6 @@ class Album {
     this.uri = object.uri;
   }
 
-  /**
-   * Makes array of Artist from array of artist objects
-   * @param {Object} artists
-   */
   makeArtists(artists) {
     const artistsList = [];
     artists.forEach((artist) => {
