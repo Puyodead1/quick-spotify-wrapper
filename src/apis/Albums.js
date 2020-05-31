@@ -61,7 +61,7 @@ class Albums {
   getAlbumTracks(id, limit = 20) {
     return new Promise((resolve, reject) => {
       this.spotify
-        .makeRequest(`albums/${id}/tracks?limit=${limit}`)
+        .makeRequest(`/albums/${id}/tracks?limit=${limit}`)
         .then((res) => {
           const trackList = [];
           res.items.forEach((track) => {

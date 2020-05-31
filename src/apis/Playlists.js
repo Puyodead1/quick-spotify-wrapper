@@ -90,7 +90,7 @@ class Playlists {
         .then((res) => {
           const trackList = [];
           res.items.forEach((track) => {
-            trackList.push(new Track(track));
+            trackList.push(new Track(track.track));
           });
           resolve(trackList);
         })

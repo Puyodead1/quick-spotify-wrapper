@@ -22,10 +22,9 @@ class Playlist {
     this.owner = object.owner ? this.makeUser(object.owner) : null;
     this.public = object.public;
     this.snapshot_id = object.snapshot_id;
-    this.tracks =
-      object.tracks && Array.isArray(object.tracks)
-        ? this.makeTracks(object.tracks)
-        : null;
+    this.tracks = object.tracks.items
+      ? this.makeTracks(object.tracks.items)
+      : null;
     this.type = object.type;
     this.uri = object.uri;
   }
@@ -45,7 +44,7 @@ class Playlist {
   makeTracks(tracks) {
     const trackList = [];
     tracks.forEach((track) => {
-      trackList.push(new Track(track));
+      trackList.push(new Track(track.track ? track.track : track));
     });
     return trackList;
   }

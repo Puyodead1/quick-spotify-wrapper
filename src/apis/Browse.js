@@ -44,7 +44,7 @@ class Browse {
    *
    * {@link https://developer.spotify.com/documentation/web-api/reference/browse/get-categorys-playlists/}
    */
-  getCategoryPlaylists(id, country, limit = 20) {
+  getCategoryPlaylists(id, country = "US", limit = 20) {
     return new Promise((resolve, reject) => {
       this.spotify
         .makeRequest(

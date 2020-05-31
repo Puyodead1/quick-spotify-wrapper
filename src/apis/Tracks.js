@@ -22,10 +22,9 @@ class Tracks {
         .makeRequest(`/tracks?ids=${ids.join(",")}`)
         .then((res) => {
           const trackList = [];
-          res,
-            tracks.forEach((track) => {
-              trackList.push(new Track(track));
-            });
+          res.tracks.forEach((track) => {
+            trackList.push(new Track(track));
+          });
           resolve(trackList);
         })
         .catch((error) => reject(error));
