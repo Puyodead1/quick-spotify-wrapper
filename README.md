@@ -1,13 +1,13 @@
 # Spotify API Wrapper
 
-Full documentation can be found here: https://chat-and-share.github.io/spotify-api-wrapper
+Full documentation can be found here: https://chat-and-share.github.io/quick-spotify-wrapper
 
 # Creating a client
 
 Example:
 
 ```js
-const Spotify = require("spotify-api-wrapper");
+const Spotify = require("quick-spotify-wrapper");
 const spotify = new Spotify("client id", "client secret");
 
 (async () => {

@@ -1,6 +1,6 @@
 {
-  "name": "spotify-api-wrapper-cas",
-  "version": "1.0.0",
+  "name": "@chatandshare/quick-spotify-wrapper",
+  "version": "1.0.1",
   "description": "A Simple wrapper around the spotify API - Used in Woof discord bot by Chat&Share",
   "main": "index.js",
   "scripts": {},
@@ -19,5 +19,16 @@
   "dependencies": {
     "node-fetch": "^2.6.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chat-And-Share/spotify-api-wrapper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Chat-And-Share/spotify-api-wrapper/issues"
+  },
+  "homepage": "https://github.com/Chat-And-Share/spotify-api-wrapper#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }
