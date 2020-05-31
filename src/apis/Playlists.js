@@ -21,12 +21,12 @@ class Playlists {
    * {@link https://developer.spotify.com/documentation/web-api/reference/playlists/get-list-users-playlists/}
    */
   getUserPlaylists(id, limit = 20) {
-    new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.spotify
         .makeRequest(`/users/${id}/playlists?limit=${limit}`)
         .then((res) => {
           const playlists = [];
-          res.playlists.items.forEach((playlist) => {
+          res.items.forEach((playlist) => {
             playlists.push(new Playlist(playlist));
           });
           resolve(playlists);
