@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>objects/Album.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Album.html">Album</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Album.html#makeArtists">makeArtists</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Albums.html">Albums</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Albums.html#getAlbum">getAlbum</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Albums.html#getAlbums">getAlbums</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Albums.html#getAlbumTracks">getAlbumTracks</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Artist.html">Artist</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Artists.html">Artists</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Artists.html#getArtist">getArtist</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Artists.html#getArtistAlbums">getArtistAlbums</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Artists.html#getArtists">getArtists</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Artists.html#getArtistTopTracks">getArtistTopTracks</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Artists.html#getRelatedArtists">getRelatedArtists</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Browse.html">Browse</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Browse.html#getCategories">getCategories</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Browse.html#getCategory">getCategory</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Browse.html#getCategoryPlaylists">getCategoryPlaylists</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Browse.html#getFeaturedPlaylists">getFeaturedPlaylists</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Browse.html#getRecommendations">getRecommendations</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Category.html">Category</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Copyright.html">Copyright</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Image.html">Image</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Playlist.html">Playlist</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Playlists.html">Playlists</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Playlists.html#getCoverImage">getCoverImage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Playlists.html#getPlaylist">getPlaylist</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Playlists.html#getPlaylistTracks">getPlaylistTracks</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Playlists.html#getUserPlaylists">getUserPlaylists</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Spotify.html">Spotify</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Spotify.html#authenticated">authenticated</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Spotify.html#login">login</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Spotify.html#makeRequest">makeRequest</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Spotify.html#search">search</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Track.html">Track</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Tracks.html">Tracks</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Tracks.html#getTrack">getTrack</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Tracks.html#getTracks">getTracks</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="User.html">User</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">objects/Album.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const Artist = require("./Artist");
+const Copyright = require("./Copyright");
+const Image = require("./Image");
+const Track = require("./Track");
+
+class Album {
+  /**
+   * Creates a new Album
+   * @constructor
+   * @param {Object} object
+   */
+  constructor(object) {
+    this.album_type = object.album_type;
+    this.artists = object.artists ? this.makeArtists(object.artists) : null;
+    this.available_markets = object.available_markets;
+    this.copyrights = object.copyrights
+      ? this.makeCopyrights(object.copyrights)
+      : null;
+    this.genres = object.genres;
+    this.href = object.href;
+    this.id = object.id;
+    this.images = object.images ? this.makeImages(object.images) : null;
+    this.name = object.name;
+    this.popularity = object.popularity;
+    this.release_date = object.release_date;
+    this.release_date_precision = object.release_date_precision;
+    this.tracks = object.tracks ? this.makeTracks(object.tracks.items) : null;
+    this.type = object.type;
+    this.uri = object.uri;
+  }
+
+  /**
+   * Makes array of Artist from array of artist objects
+   * @param {Object} artists
+   */
+  makeArtists(artists) {
+    const artistsList = [];
+    artists.forEach((artist) => {
+      artistsList.push(new Artist(artist));
+    });
+    return artistsList;
+  }
+
+  makeCopyrights(copyrights) {
+    const copyrightsList = [];
+    copyrights.forEach((copyright) => {
+      copyrightsList.push(new Copyright(copyright));
+    });
+    return copyrightsList;
+  }
+
+  makeImages(images) {
+    const imagesList = [];
+    images.forEach((image) => {
+      imagesList.push(new Image(image));
+    });
+    return imagesList;
+  }
+
+  makeTracks(tracks) {
+    const tracksList = [];
+    tracks.forEach((track) => {
+      tracksList.push(new Track(track));
+    });
+    return tracksList;
+  }
+}
+
+module.exports = Album;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Sun May 31 2020 10:19:59 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
