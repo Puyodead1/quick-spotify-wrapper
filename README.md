@@ -76,6 +76,8 @@ Here is a more complex example:
 
 This example generates recommendations with a minimum popularity of 1 and speechiness of 0.33, and a maximum popularity of 80 and speechiness of 0.66
 
+_More information on how to use this API can be found here: [Spotify API Docs](https://developer.spotify.com/documentation/web-api/reference/browse/get-recommendations/)_
+
 # Errors:
 
 Spotify api returns error objects in the following form:
