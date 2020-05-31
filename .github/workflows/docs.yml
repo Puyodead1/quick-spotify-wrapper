@@ -20,7 +20,7 @@ jobs:
           output_dir: ./docs
           front_page: README.md
           template: ink-docstrap
-          config_file: conf.json
+          config_file: config.json
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
