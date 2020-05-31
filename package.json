@@ -1,5 +1,5 @@
 {
-  "name": "spotify-api-wrapper",
+  "name": "spotify-api-wrapper-cas",
   "version": "1.0.0",
   "description": "A Simple wrapper around the spotify API - Used in Woof discord bot by Chat&Share",
   "main": "index.js",

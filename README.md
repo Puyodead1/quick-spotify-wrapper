@@ -1,5 +1,7 @@
 # Spotify API Wrapper
 
+Full documentation can be found here: https://chat-and-share.github.io/spotify-api-wrapper
+
 # Creating a client
 
 Example:
