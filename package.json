@@ -22,12 +22,12 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Chat-And-Share/spotify-api-wrapper.git"
+    "url": "git+https://github.com/Chat-And-Share/quick-spotify-wrapper.git"
   },
   "bugs": {
-    "url": "https://github.com/Chat-And-Share/spotify-api-wrapper/issues"
+    "url": "https://github.com/Chat-And-Share/quick-spotify-wrapper/issues"
   },
-  "homepage": "https://github.com/Chat-And-Share/spotify-api-wrapper#readme",
+  "homepage": "https://github.com/Chat-And-Share/quick-spotify-wrapper#readme",
   "publishConfig": {
     "access": "public"
   }
