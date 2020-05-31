@@ -59,7 +59,10 @@ module.exports = module.exports = class Artists {
         .then((res) => {
           const tracks = [];
           res.tracks.forEach((track) => {
-            tracks.push(new Track(track));
+            const album = new Album(track.album);
+            const trck = new Track(track);
+            trck.album = album;
+            tracks.push(trck);
           });
           resolve(tracks);
         })
@@ -67,7 +70,45 @@ module.exports = module.exports = class Artists {
     });
   }
 
-  getRelatedArtists(id) {}
+  /**
+   * Get Spotify catalog information about artists similar to a given artist. Similarity is based on analysis of the Spotify community’s listening history.
+   * @param {String} id artist id
+   * @returns array of artists
+   * @external https://developer.spotify.com/documentation/web-api/reference/artists/get-related-artists/
+   */
+  getRelatedArtists(id) {
+    return new Promise((resolve, reject) => {
+      this.spotify
+        .makeRequest(`/artists/${id}/related-artists`)
+        .then((res) => {
+          const artists = [];
+          res.artists.forEach((artist) => {
+            artists.push(new Artist(artist));
+          });
+          resolve(artists);
+        })
+        .catch((error) => reject(error));
+    });
+  }
 
-  getArtists(...ids) {}
+  /**
+   * Get Spotify catalog information for several artists based on their Spotify IDs.
+   * @param  {...String} ids array of artist ids
+   * @returns array of artists; Max 50
+   * @external https://developer.spotify.com/documentation/web-api/reference/artists/get-several-artists/
+   */
+  getArtists(...ids) {
+    return new Promise((resolve, reject) => {
+      this.spotify
+        .makeRequest(`/artists?ids=${ids.join(",")}`)
+        .then((res) => {
+          const artists = [];
+          res.artists.forEach((artist) => {
+            artists.push(new Artist(artist));
+          });
+          resolve(artists);
+        })
+        .catch((error) => reject(error));
+    });
+  }
 };

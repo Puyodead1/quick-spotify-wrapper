@@ -1,10 +1,9 @@
 const Artist = require("./Artist");
-const Album = require("./Album");
 
 module.exports = class Track {
   constructor(object) {
-    this.album = object.album ? this.makeAlbum(object.album) : null;
-    this.artists = this.makeArtists(object.artists);
+    this.album = null;
+    this.artists = object.artists ? this.makeArtists(object.artists) : null;
     this.available_markets = object.available_markets;
     this.disk_number = object.disk_number;
     this.duration_ms = object.duration_ms;
@@ -24,9 +23,5 @@ module.exports = class Track {
       artistsList.push(new Artist(artist));
     });
     return artistsList;
-  }
-
-  makeAlbum(album) {
-    return new Album(album);
   }
 };

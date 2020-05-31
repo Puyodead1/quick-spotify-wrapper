@@ -6,18 +6,20 @@ const Track = require("./Track");
 module.exports = class Album {
   constructor(object) {
     this.album_type = object.album_type;
-    this.artists = this.makeArtists(object.artists);
+    this.artists = object.artists ? this.makeArtists(object.artists) : null;
     this.available_markets = object.available_markets;
-    this.copyrights = this.makeCopyrights(object.copyrights);
+    this.copyrights = object.copyrights
+      ? this.makeCopyrights(object.copyrights)
+      : null;
     this.genres = object.genres;
     this.href = object.href;
     this.id = object.id;
-    this.images = this.makeImages(object.images);
+    this.images = object.images ? this.makeImages(object.images) : null;
     this.name = object.name;
     this.popularity = object.popularity;
     this.release_date = object.release_date;
     this.release_date_precision = object.release_date_precision;
-    this.tracks = this.makeTracks(object.tracks.items);
+    this.tracks = object.tracks ? this.makeTracks(object.tracks.items) : null;
     this.type = object.type;
     this.uri = object.uri;
   }
