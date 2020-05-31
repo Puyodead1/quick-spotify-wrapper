@@ -1,5 +1,7 @@
 # Spotify API Wrapper
 
+# Creating a client
+
 Example:
 
 ```js
@@ -12,7 +14,11 @@ const spotify = new Spotify("client id", "client secret");
 })();
 ```
 
+# Authentication Status
+
 You can check the authentication status with `spotify.authenticated` which will return a boolean
+
+# Search
 
 Search Example:
 
@@ -27,6 +33,8 @@ Search Example:
 ```
 
 _information related to how to use search can be found here: [Spotify API Reference](https://developer.spotify.com/documentation/web-api/reference/search/search/)_
+
+# Recommendations API
 
 Recommendations API can be a bit complex so here are some examples:
 
@@ -67,3 +75,21 @@ Here is a more complex example:
 ```
 
 This example generated recommendations with a minimum popularity of 1 and speechiness of 0.33, and a maximum popularity of 80 and speechiness of 0.66
+
+# Errors:
+
+Spotify api returns error objects in the following form:
+
+```json
+{ error: { status: <http resonse code>, message: '<error messages>' } }
+```
+
+Examples:
+
+```json
+{ "error": { "status": 404, "message": "No such user" } }
+```
+
+```json
+{ "error": { "status": 400, "message": "invalid request" } }
+```
