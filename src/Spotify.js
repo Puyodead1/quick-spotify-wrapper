@@ -76,7 +76,10 @@ module.exports = class Spotify {
         headers: { Authorization: `Bearer ${this._token}` },
       })
         .then((res) => res.json())
-        .then((res) => resolve(res))
+        .then((res) => {
+          if (res.error) reject(res);
+          resolve(res);
+        })
         .catch((error) => reject(error));
     });
   }
