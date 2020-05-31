@@ -54,7 +54,7 @@ Basic:
 })();
 ```
 
-What this does is generated recommendations from artists, genres, and tracks provided. You can provide up to 5 tracks, genres, and artists. this is the most basic example.
+What this does is generates recommendations from artists, genres, and tracks provided. You can provide up to 5 tracks, genres, and artists. this is the most basic example.
 
 Here is a more complex example:
 
@@ -74,7 +74,7 @@ Here is a more complex example:
 })();
 ```
 
-This example generated recommendations with a minimum popularity of 1 and speechiness of 0.33, and a maximum popularity of 80 and speechiness of 0.66
+This example generates recommendations with a minimum popularity of 1 and speechiness of 0.33, and a maximum popularity of 80 and speechiness of 0.66
 
 # Errors:
 
