@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const Album = require("../objects/Album");
 
 module.exports = class Albums {
   constructor(spotify) {
@@ -15,7 +15,11 @@ module.exports = class Albums {
       this.spotify
         .makeRequest(`/albums?ids=${ids.join(",")}`)
         .then((res) => {
-          resolve(res.albums);
+          const albums = [];
+          res.albums.forEach((album) => {
+            albums.push(new Album(album));
+          });
+          resolve(albums);
         })
         .catch((error) => reject(error));
     });

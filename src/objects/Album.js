@@ -1,6 +1,7 @@
 const Artist = require("./Artist");
 const Copyright = require("./Copyright");
 const Image = require("./Image");
+const Track = require("./Track");
 
 module.exports = class Album {
   constructor(object) {
@@ -47,5 +48,13 @@ module.exports = class Album {
       imagesList.push(new Image(image));
     });
     return imagesList;
+  }
+
+  makeTracks(tracks) {
+    const tracksList = [];
+    tracks.forEach((track) => {
+      tracksList.push(new Track(track));
+    });
+    return tracksList;
   }
 };
