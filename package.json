@@ -1,18 +1,23 @@
 {
   "name": "spotify-api-wrapper",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Simple wrapper around the spotify API - Used in Woof discord bot by Chat&Share",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {},
+  "keywords": [
+    "spotify",
+    "spotify-api",
+    "discord",
+    "discordbot",
+    "discord-bot",
+    "music",
+    "music-bot",
+    "discord-music-bot"
+  ],
+  "author": "Puyodead1",
+  "license": "AGPL-3.0",
   "dependencies": {
     "node-fetch": "^2.6.0"
   },
-  "devDependencies": {
-    "ink-docstrap": "^1.3.2"
-  }
+  "devDependencies": {}
 }
