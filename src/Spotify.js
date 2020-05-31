@@ -82,7 +82,6 @@ class Spotify {
    * @returns Promise
    */
   makeRequest(url) {
-    console.debug(url);
     return new Promise((resolve, reject) => {
       fetch(this.API_BASE + url, {
         method: "get",
