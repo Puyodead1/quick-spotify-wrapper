@@ -71,8 +71,8 @@ Here is a more complex example:
       ["2sf28o6euxEDpYkG9dMtuM", "3bwENxqj9nhaAI3fsAwmv9"],
       ["pop"],
       ["6XwnkMuCSCu46Q4BS5nGNL", "4BacK7ZctqLEyFomDuh9jG"],
-      ["popularity=1", "speechiness=0.33"],
-      ["popularity=80", "speechiness=0.66"]
+      ["min_popularity=1", "min_speechiness=0.33"],
+      ["max_popularity=80", "max_speechiness=0.66"]
     )
     .catch((error) => console.error(error));
   console.log(results);
