@@ -1,17 +1,17 @@
-/* 
+/*
  *  Ssimple nodejs wrapper for the Spotify API that was developed for Woof discord bot by Chat&Share
  *  Copyright (C) 2020 Puyodead1
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published
  *  by the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
- *  
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU Affero General Public License for more details.
- *  
+ *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
@@ -157,13 +157,14 @@ class Browse {
   /**
    * Create a playlist-style listening experience based on seed artists, tracks and genres.
    * @description Recommendations are generated based on the available information for a given seed entity and matched against similar artists and tracks. If there is sufficient information about the provided seeds, a list of tracks will be returned together with pool size details.
+   * @note AN IMPORTANT THING TO UNDERSTAND IS THAT BETWEEN SEED_ARTISTS, SEED_GENRES, AND SEED_TRACKS, YOU CAN ONLY HAVE A MAX OF 5 COMBINED! NOT 5 PER SEED!
    * @param {Number} limit maximum number of items to return; default: 20, min: 1, max: 50
    * @param {String} market an ISO 3166-1 alpha-2 country code.
    * @param {Array} max For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
    * @param {Array} min For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-   * @param {Array} seedArtists array of artist ids; max 5
-   * @param {String} seedGenres array of genres; max 5; See https://developer.spotify.com/documentation/web-api/reference/browse/get-recommendations/#available-genre-seeds
-   * @param {Array} seedTracks array of track ids; max 5
+   * @param {Array} seedArtists array of artist ids; max 5 for all seed values
+   * @param {String} seedGenres array of genres; max 5 for all seed values; See https://developer.spotify.com/documentation/web-api/reference/browse/get-recommendations/#available-genre-seeds
+   * @param {Array} seedTracks array of track ids; max 5 for all seed values
    * @param {Array} target For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
    * @returns Array of tracks
    *
@@ -176,13 +177,23 @@ class Browse {
     min = [],
     max = [],
     target = [],
-    limit = 20,
-    market = "US"
+    limit = 20
   ) {
     return new Promise((resolve, reject) => {
+      console.log(
+        `/recommendations?limit=${limit}${
+          max.length > 0 ? "&" + max.join("&") : ""
+        }${
+          min.length > 0 ? "&" + min.join("&") : ""
+        }&seed_artists=${seedArtists.join(",")}&seed_genres=${seedGenres.join(
+          ","
+        )}&seed_tracks=${seedTracks.join(",")}${
+          target.length > 0 ? "&" + target.join("&") : ""
+        }`
+      );
       this.spotify
         .makeRequest(
-          `/recommendations?limit=${limit}&market=${market}${
+          `/recommendations?limit=${limit}${
             max.length > 0 ? "&" + max.join("&") : ""
           }${
             min.length > 0 ? "&" + min.join("&") : ""
