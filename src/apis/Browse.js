@@ -180,17 +180,6 @@ class Browse {
     limit = 20
   ) {
     return new Promise((resolve, reject) => {
-      console.log(
-        `/recommendations?limit=${limit}${
-          max.length > 0 ? "&" + max.join("&") : ""
-        }${
-          min.length > 0 ? "&" + min.join("&") : ""
-        }&seed_artists=${seedArtists.join(",")}&seed_genres=${seedGenres.join(
-          ","
-        )}&seed_tracks=${seedTracks.join(",")}${
-          target.length > 0 ? "&" + target.join("&") : ""
-        }`
-      );
       this.spotify
         .makeRequest(
           `/recommendations?limit=${limit}${
