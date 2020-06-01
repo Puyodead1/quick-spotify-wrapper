@@ -1,6 +1,6 @@
 {
   "name": "@chatandshare/quick-spotify-wrapper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Simple wrapper around the spotify API - Used in Woof discord bot by Chat&Share",
   "main": "index.js",
   "scripts": {},
