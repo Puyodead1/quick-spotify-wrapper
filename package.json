@@ -1,7 +1,7 @@
 {
-  "name": "@chatandshare/quick-spotify-wrapper",
+  "name": "quick-spotify-wrapper",
   "version": "1.0.3",
-  "description": "A Simple wrapper around the spotify API - Used in Woof discord bot by Chat&Share",
+  "description": "A Simple wrapper around the spotify API",
   "main": "index.js",
   "scripts": {},
   "keywords": [
@@ -15,20 +15,17 @@
     "discord-music-bot"
   ],
   "author": "Puyodead1",
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "dependencies": {
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Chat-And-Share/quick-spotify-wrapper.git"
+    "url": "git+https://github.com/Puyodead1/quick-spotify-wrapper.git"
   },
   "bugs": {
-    "url": "https://github.com/Chat-And-Share/quick-spotify-wrapper/issues"
+    "url": "https://github.com/Puyodead1/quick-spotify-wrapper/issues"
   },
-  "homepage": "https://github.com/Chat-And-Share/quick-spotify-wrapper#readme",
-  "publishConfig": {
-    "access": "public"
-  }
+  "homepage": "https://github.com/Puyodead1/quick-spotify-wrapper#readme"
 }

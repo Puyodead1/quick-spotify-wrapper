@@ -1,7 +1,7 @@
 # Spotify API Wrapper
 
-Full documentation can be found here: https://chat-and-share.github.io/quick-spotify-wrapper
-For support you can join our Discord server: https://discord.gg/yvFPHg3
+Full documentation can be found at: https://puyodead1.github.io/quick-spotify-wrapper/
+For support you can join my Discord server: https://discord.gg/tMzrSxQ
 
 # Creating a client
 
