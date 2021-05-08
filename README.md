@@ -1,6 +1,6 @@
 # Spotify API Wrapper
 
-Full documentation can be found at: [documentation link](https://puyodead1.github.io/quick-spotify-wrapper)
+Full documentation can be found [here](https://puyodead1.github.io/quick-spotify-wrapper)
 
 For support you can join my Discord server:
 
