@@ -4,7 +4,7 @@ Full documentation can be found at: https://puyodead1.github.io/quick-spotify-wr
 
 For support you can join my Discord server:
 
-![Discord Banner 2](https://discordapp.com/api/guilds/589200717277954093/widget.png?style=banner2)
+![https://discord.gg/tMzrSxQ](https://discordapp.com/api/guilds/589200717277954093/widget.png?style=banner2)
 
 # Creating a client
 
