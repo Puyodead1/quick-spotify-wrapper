@@ -1,10 +1,10 @@
 # Spotify API Wrapper
 
-Full documentation can be found [here](https://puyodead1.github.io/quick-spotify-wrapper)
+_Moved from Chat-and-Share/quick-spotify-wrapper_
 
-For support you can join my Discord server:
+Full documentation can be found [here](https://puyodead1.github.io/quick-spotify-wrapper).
 
-![https://discord.gg/tMzrSxQ](https://discordapp.com/api/guilds/589200717277954093/widget.png?style=banner2)
+For support you can join my [Discord Server](https://discord.gg/tMzrSxQ).
 
 # Creating a client
 
