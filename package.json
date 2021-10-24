@@ -3,9 +3,7 @@
   "version": "1.0.3",
   "description": "A Simple wrapper around the spotify API",
   "main": "index.js",
-  "scripts": {
-    "build:docs": "jsdoc -c config.json -r -d docs src"
-  },
+  "scripts": {},
   "keywords": [
     "spotify",
     "spotify-api",
@@ -21,9 +19,7 @@
   "dependencies": {
     "node-fetch": "^2.6.1"
   },
-  "devDependencies": {
-    "jsdoc": "^3.6.7"
-  },
+  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Puyodead1/quick-spotify-wrapper.git"
