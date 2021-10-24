@@ -3,4 +3,6 @@ gh-pages
 gh-pages.pub
 .vscode
 dist/
-test/
+.nyc_output/
+tests/config.json
+docs/

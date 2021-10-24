@@ -1,17 +1,38 @@
 import { fetch, FetchResultTypes } from "@sapphire/fetch";
-import { TOKEN_URL } from "./Constants";
+import { Albums } from "./Endpoints/Albums";
+import { ENDPOINTS } from "./Constants";
 import { TokenResponseJSON } from "./Interfaces";
 
 export class SpotifyClient {
   public readonly clientId: string;
   public readonly clientSecret: string;
-  public token: string | null = null;
+  public _token: string | null = null;
   public refreshInterval: NodeJS.Timer | null = null;
   public isAuthenticated: boolean = false;
+  public readonly albums: Albums;
 
   constructor(clientId: string, clientSecret: string) {
     this.clientId = clientId;
     this.clientSecret = clientSecret;
+    this.albums = new Albums(this);
+  }
+
+  request<T>(url: string, options: RequestInit = {}): Promise<T> {
+    if (!this._token) {
+      throw new Error("No token has been acquired yet.");
+    }
+
+    return fetch<T>(
+      `${ENDPOINTS.API_BASE}${url}`,
+      {
+        ...options,
+        headers: {
+          ...options.headers,
+          Authorization: `Bearer ${this._token}`,
+        },
+      },
+      FetchResultTypes.JSON
+    );
   }
 
   /**
@@ -24,6 +45,12 @@ export class SpotifyClient {
     }, expiresIn * 1000);
   }
 
+  destroy(): void {
+    if (this.refreshInterval) {
+      clearTimeout(this.refreshInterval);
+    }
+  }
+
   /**
    * Fetches a new token from the Spotify API.
    * @async
@@ -32,7 +59,7 @@ export class SpotifyClient {
   async login(): Promise<void> {
     return new Promise((resolve, reject) => {
       fetch<TokenResponseJSON>(
-        TOKEN_URL,
+        ENDPOINTS.TOKEN_URL,
         {
           method: "POST",
           headers: {
@@ -46,7 +73,7 @@ export class SpotifyClient {
         FetchResultTypes.JSON
       )
         .then((res) => {
-          this.token = res.access_token;
+          this._token = res.access_token;
           const expiresIn = res.expires_in;
           this.createRefreshTimer(expiresIn);
           resolve();

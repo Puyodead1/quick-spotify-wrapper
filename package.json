@@ -1,9 +1,11 @@
 {
   "name": "quick-spotify-wrapper",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "A Simple wrapper around the spotify API",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "nyc ./node_modules/.bin/_mocha 'tests/**/*.test.ts'"
+  },
   "keywords": [
     "spotify",
     "spotify-api",
@@ -25,7 +27,18 @@
   },
   "homepage": "https://puyodead1.github.io/quick-spotify-wrapper/",
   "devDependencies": {
-    "@types/node": "^16.11.4"
+    "@testdeck/mocha": "^0.1.2",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.11.4",
+    "chai": "^4.3.4",
+    "mocha": "^9.1.3",
+    "mocha-typescript": "^1.1.17",
+    "nyc": "^15.1.0",
+    "ts-mockito": "^2.6.1",
+    "ts-node": "^10.4.0",
+    "typedoc": "^0.22.6",
+    "typedoc-darker-theme": "^1.2.1",
+    "typescript": "^4.4.4"
   },
   "dependencies": {
     "@sapphire/fetch": "^2.0.2"
