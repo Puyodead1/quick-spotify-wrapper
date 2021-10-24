@@ -16,10 +16,6 @@
   ],
   "author": "Puyodead1",
   "license": "MIT",
-  "dependencies": {
-    "node-fetch": "^2.6.1"
-  },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Puyodead1/quick-spotify-wrapper.git"
@@ -27,5 +23,11 @@
   "bugs": {
     "url": "https://github.com/Puyodead1/quick-spotify-wrapper/issues"
   },
-  "homepage": "https://puyodead1.github.io/quick-spotify-wrapper/"
+  "homepage": "https://puyodead1.github.io/quick-spotify-wrapper/",
+  "devDependencies": {
+    "@types/node": "^16.11.4"
+  },
+  "dependencies": {
+    "@sapphire/fetch": "^2.0.2"
+  }
 }

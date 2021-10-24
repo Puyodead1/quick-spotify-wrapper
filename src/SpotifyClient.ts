@@ -1,0 +1,57 @@
+import { fetch, FetchResultTypes } from "@sapphire/fetch";
+import { TOKEN_URL } from "./Constants";
+import { TokenResponseJSON } from "./Interfaces";
+
+export class SpotifyClient {
+  public readonly clientId: string;
+  public readonly clientSecret: string;
+  public token: string | null = null;
+  public refreshInterval: NodeJS.Timer | null = null;
+  public isAuthenticated: boolean = false;
+
+  constructor(clientId: string, clientSecret: string) {
+    this.clientId = clientId;
+    this.clientSecret = clientSecret;
+  }
+
+  /**
+   * Creates a refresh timer that will refresh the token in `expiresIn` milliseconds.
+   * @param ms time in milliseconds
+   */
+  createRefreshTimer(expiresIn: number): void {
+    this.refreshInterval = setTimeout(() => {
+      this.login();
+    }, expiresIn * 1000);
+  }
+
+  /**
+   * Fetches a new token from the Spotify API.
+   * @async
+   * @returns A promise that resolves when the token has been acquired.
+   */
+  async login(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      fetch<TokenResponseJSON>(
+        TOKEN_URL,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            Authorization: `Basic ${Buffer.from(
+              `${this.clientId}:${this.clientSecret}`
+            ).toString("base64")}`,
+          },
+          body: new URLSearchParams({ grant_type: "client_credentials" }),
+        },
+        FetchResultTypes.JSON
+      )
+        .then((res) => {
+          this.token = res.access_token;
+          const expiresIn = res.expires_in;
+          this.createRefreshTimer(expiresIn);
+          resolve();
+        })
+        .catch(reject);
+    });
+  }
+}
