@@ -4,7 +4,7 @@
   "description": "A Simple wrapper around the spotify API",
   "main": "index.js",
   "scripts": {
-    "build:docs": "jsdoc -c config.json -r --readme README.md -d docs src"
+    "build:docs": "jsdoc -c config.json -r -d docs src"
   },
   "keywords": [
     "spotify",
