@@ -135,4 +135,11 @@ export const ENDPOINTS = {
       market?: string;
     }
   ) => buildURL("/search", { q, type: type.join(","), ...options }),
+  USERS: {
+    GET_USER: (id: string) => buildURL(`/users/${id}`),
+    USERS_ARE_FOLLOWING_PLAYLIST: (playlist_id: string, user_ids: string[]) =>
+      buildURL(`/playlists/${playlist_id}/followers/contains`, {
+        ids: user_ids.join(","),
+      }),
+  },
 };

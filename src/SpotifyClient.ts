@@ -1,9 +1,10 @@
 import { fetch, FetchResultTypes } from "@sapphire/fetch";
 import { Albums } from "./Endpoints/Albums";
 import { ENDPOINTS } from "./Constants";
-import { TokenResponseJSON } from "./Interfaces";
+import { HTTPErrorObject, TokenResponseJSON } from "./Interfaces";
 import { Artists } from "./Endpoints/Artists";
 import { Search } from "./Endpoints/Search";
+import { Users } from "./Endpoints/Users";
 
 export class SpotifyClient {
   /**
@@ -35,6 +36,7 @@ export class SpotifyClient {
    * Class that handles the Search endpoint
    */
   public readonly search: Search;
+  public readonly users: Users;
 
   /**
    *
@@ -47,6 +49,7 @@ export class SpotifyClient {
     this.albums = new Albums(this);
     this.artists = new Artists(this);
     this.search = new Search(this);
+    this.users = new Users(this);
   }
 
   /**

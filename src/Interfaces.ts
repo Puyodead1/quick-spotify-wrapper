@@ -1,9 +1,3 @@
-export interface TokenResponseJSON {
-  access_token: string;
-  expires_in: number;
-  token_type: string;
-}
-
 export type AlbumType = "album" | "single" | "compilation";
 export type ReleaseDatePrecision = "day" | "month" | "year";
 export type RestrictionReason = "market" | "product" | "explicit";
@@ -18,6 +12,26 @@ export type SearchType =
   | "episode";
 export type CopyrightType = "C" | "P";
 export type SearchIncludeExternalTypes = "audio";
+
+export interface HTTPErrorObject {
+  error: {
+    /**
+     * The HTTP status code (also returned in the response header; see Response Status Codes for more information).\
+     * \>= 400 <= 599
+     */
+    status: number;
+    /**
+     * A short description of the cause of the error.
+     */
+    message: string;
+  };
+}
+
+export interface TokenResponseJSON {
+  access_token: string;
+  expires_in: number;
+  token_type: string;
+}
 
 export interface ExternalUrls {
   /**
