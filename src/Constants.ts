@@ -1,4 +1,5 @@
-import { AlbumGroups } from "Interfaces";
+import { AlbumGroup, SearchIncludeExternalTypes, SearchType } from "Interfaces";
+import { join } from "path/posix";
 
 function buildURL(endpoint: string, params?: any) {
   const url = new URL(`${ENDPOINTS.API_BASE}${endpoint}`);
@@ -41,7 +42,7 @@ export const ENDPOINTS = {
       options?: {
         limit?: number;
         offset?: number;
-        include_groups?: AlbumGroups[];
+        include_groups?: AlbumGroup[];
         market?: string;
       }
     ) => buildURL(`/artists/${id}/albums`, options),
@@ -97,4 +98,41 @@ export const ENDPOINTS = {
       target_valence?: number;
     }) => buildURL(`/recommendations`, options),
   },
+  SHOWS: {
+    GET_SHOW: (id: string) => buildURL(`/shows/${id}`),
+    GET_SHOWS: (ids: string[], options?: { market?: string }) =>
+      buildURL(`/shows`, { ids: ids.join(","), ...options }),
+    GET_SHOW_EPISODES: (
+      id: string,
+      options?: { limit?: number; offset?: number; market?: string }
+    ) => buildURL(`/shows/${id}/episodes`, options),
+  },
+  EPISODES: {
+    GET_EPISODE: (id: string, options?: { market?: string }) =>
+      buildURL(`/episodes/${id}`, options),
+    GET_EPISODES: (ids: string[], options?: { market?: string }) =>
+      buildURL(`/episodes`, { ids: ids.join(","), ...options }),
+  },
+  TRACKS: {
+    GET_TRACK: (id: string, options?: { market?: string }) =>
+      buildURL(`/tracks/${id}`, options),
+    GET_TRACKS: (ids: string[], options?: { market?: string }) =>
+      buildURL(`/tracks`, { ids: ids.join(","), ...options }),
+    GET_TRACK_AUDIO_FEATURES: (id: string) =>
+      buildURL(`/audio-features`, { id }),
+    GET_TRACKS_AUDIO_FEATURES: (ids: string[]) =>
+      buildURL(`/audio-features`, { ids: ids.join(",") }),
+    GET_TRACK_AUDIO_ANALYSIS: (id: string) =>
+      buildURL(`/audio-analysis`, { id }),
+  },
+  SEARCH: (
+    q: string,
+    type: SearchType[],
+    options?: {
+      include_external?: SearchIncludeExternalTypes;
+      limit?: number;
+      offset?: number;
+      market?: string;
+    }
+  ) => buildURL("/search", { q, type: type.join(","), ...options }),
 };

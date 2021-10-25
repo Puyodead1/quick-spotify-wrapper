@@ -3,6 +3,7 @@ import { Albums } from "./Endpoints/Albums";
 import { ENDPOINTS } from "./Constants";
 import { TokenResponseJSON } from "./Interfaces";
 import { Artists } from "./Endpoints/Artists";
+import { Search } from "./Endpoints/Search";
 
 export class SpotifyClient {
   /**
@@ -30,6 +31,10 @@ export class SpotifyClient {
    * Class that handles the Artists endpoints
    */
   public readonly artists: Artists;
+  /**
+   * Class that handles the Search endpoint
+   */
+  public readonly search: Search;
 
   /**
    *
@@ -41,6 +46,7 @@ export class SpotifyClient {
     this._clientSecret = clientSecret;
     this.albums = new Albums(this);
     this.artists = new Artists(this);
+    this.search = new Search(this);
   }
 
   /**

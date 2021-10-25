@@ -2,7 +2,6 @@ import { suite, test } from "mocha-typescript";
 import { expect } from "chai";
 import { SpotifyClient } from "../src";
 import { CLIENT_ID, CLIENT_SECRET } from "./config.json";
-import { inspect } from "util";
 
 const client = new SpotifyClient(CLIENT_ID, CLIENT_SECRET);
 
@@ -45,7 +44,9 @@ class ArtistsTest {
       .to.be.an("object")
       .that.has.property("items")
       .that.is.an("array")
-      .that.satisfies((albums) => albums[0].name === "Human (Deluxe)");
+      .that.has.property("0")
+      .that.has.property("id")
+      .that.is.a("string");
   }
 
   @test async "should get an artists's albums with a limit of 1"() {
@@ -58,7 +59,9 @@ class ArtistsTest {
       .that.has.property("items")
       .that.is.an("array")
       .that.has.length(1)
-      .that.satisfies((albums) => albums[0].name === "Human (Deluxe)");
+      .that.has.property("0")
+      .that.has.property("id")
+      .that.is.a("string");
   }
 
   @test
@@ -72,10 +75,9 @@ class ArtistsTest {
       .that.has.property("items")
       .that.is.an("array")
       .that.has.length(1)
-      .that.satisfies(
-        (albums) =>
-          albums[0].name === "CLOUDS (Music From The Disney+ Original Movie)"
-      );
+      .that.has.property("0")
+      .that.has.property("id")
+      .that.is.a("string");
   }
 
   @test
@@ -93,7 +95,9 @@ class ArtistsTest {
       .that.has.property("items")
       .that.is.an("array")
       .that.has.length(1)
-      .that.satisfies((albums) => albums[0].name === "Run (Collins Remix)");
+      .that.has.property("0")
+      .that.has.property("id")
+      .that.is.a("string");
   }
 
   @test async "should get related artists"() {
@@ -104,9 +108,9 @@ class ArtistsTest {
       .to.be.an("object")
       .that.has.property("artists")
       .that.is.an("array")
-      .that.satisfies(
-        (artists) => artists[0].name && typeof artists[0].name === "string"
-      );
+      .that.has.property("0")
+      .that.has.property("id")
+      .that.is.a("string");
   }
 
   @test async "should get recommendations"() {
@@ -125,9 +129,9 @@ class ArtistsTest {
       .to.be.an("object")
       .that.has.property("tracks")
       .that.is.an("array")
-      .that.satisfies(
-        (tracks) => tracks[0].name && typeof tracks[0].name === "string"
-      );
+      .that.has.property("0")
+      .that.has.property("id")
+      .that.is.a("string");
   }
 
   async after() {

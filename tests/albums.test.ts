@@ -77,7 +77,9 @@ class AlbumsTest {
       .that.has.property("items")
       .that.is.an("array")
       .that.has.length(20)
-      .that.satisfies((albums) => albums[0].name);
+      .that.has.property("0")
+      .that.has.property("id")
+      .that.is.a("string");
   }
 
   async after() {
