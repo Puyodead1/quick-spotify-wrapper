@@ -1,6 +1,6 @@
 {
   "name": "quick-spotify-wrapper",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Simple wrapper around the spotify API",
   "main": "index.js",
   "scripts": {},

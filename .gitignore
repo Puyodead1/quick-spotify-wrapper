@@ -3,3 +3,7 @@ test.js
 gh-pages
 gh-pages.pub
 .vscode
+dist/
+docs/
+.nyc/
+tests/
