@@ -1,67 +1,100 @@
+import { AlbumGroups } from "Interfaces";
+
+function buildURL(endpoint: string, params?: any) {
+  const url = new URL(`${ENDPOINTS.API_BASE}${endpoint}`);
+  if (params) {
+    Object.keys(params).forEach((key) => {
+      if (!params[key]) return;
+      url.searchParams.append(key, (params as any)[key as any]);
+    });
+  }
+  return url.toString();
+}
+
 export const ENDPOINTS = {
   API_BASE: "https://api.spotify.com/v1",
   TOKEN_URL: "https://accounts.spotify.com/api/token",
   ALBUMS: {
-    /**
-     * Builds the URL for requesting a specific album
-     * @param id The Spotify ID of the album.\
-     * Example value: "4aawyAB9vmqN3uQ7FjRGTy"
-     * @param market An ISO 3166-1 alpha-2 country code. If a country code is specified, only episodes that are available in that market will be returned.\
-     * \
-     * If a valid user access token is specified in the request header, the country associated with the user account will take priority over this parameter.\
-     * \
-     * Note: If neither market or user country are provided, the content is considered unavailable for the client.
-     * \
-     * Example value: "ES"
-     * @returns URL
-     */
-    GET_ALBUM: (id: string, market?: string) =>
-      `/albums/${id}${market ? `?market=${market}` : ""}`,
-    /**
-     * Builds the URL for requesting a several albums
-     * @param ids A comma-separated list of the Spotify IDs for the albums. Maximum: 20 IDs.\
-     * Example value: "382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc"
-     * @param market An ISO 3166-1 alpha-2 country code. If a country code is specified, only episodes that are available in that market will be returned.\
-     * \
-     * If a valid user access token is specified in the request header, the country associated with the user account will take priority over this parameter.\
-     * \
-     * Note: If neither market or user country are provided, the content is considered unavailable for the client.
-     * \
-     * Example value: "ES"
-     * @returns URL
-     */
-    GET_ALBUMS: (ids: string[], market?: string) =>
-      `/albums?ids=${ids.join(",")}${market ? `?market=${market}` : ""}`,
-    /**
-     * Builds the URL for requesting an album's tracks
-     * @param id The Spotify ID for the album.
-     * @param limit The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50.
-     * @param offset The index of the first item to return. Default: 0 (the first item). Use with limit to get the next set of items.
-     * @param market An ISO 3166-1 alpha-2 country code. If a country code is specified, only episodes that are available in that market will be returned.\
-     * \
-     * If a valid user access token is specified in the request header, the country associated with the user account will take priority over this parameter.\
-     * \
-     * Note: If neither market or user country are provided, the content is considered unavailable for the client.
-     * \
-     * Example value: "ES"
-     * @returns URL
-     */
+    GET_ALBUM: (id: string, options?: { market?: string }) =>
+      buildURL(`/albums/${id}`, options),
+
+    GET_ALBUMS: (ids: string[], options?: { market?: string }) =>
+      buildURL(`/albums`, { ids: ids.join(","), ...options }),
+
     GET_ALBUM_TRACKS: (
       id: string,
-      limit: number = 20,
-      offset: number = 0,
-      market?: string
-    ) =>
-      `/albums/${id}/tracks?limit=${limit}&offset=${offset}${
-        market ? `?market=${market}` : ""
-      }`,
-    BROWSE_NEW_RELEASES: (
-      limit: number = 20,
-      offset: number = 0,
-      country?: string
-    ) =>
-      `/browse/new-releases?limit=${limit}&offset=${offset}${
-        country ? `?market=${country}` : ""
-      }`,
+      options?: { limit?: number; offset?: number; market?: string }
+    ) => buildURL(`/albums/${id}/tracks`, options),
+
+    BROWSE_NEW_RELEASES: (options?: {
+      limit?: number;
+      offset?: number;
+      country?: string;
+    }) => buildURL(`/browse/new-releases`, options),
+  },
+  ARTISTS: {
+    GET_ARTIST: (id: string) => buildURL(`/artists/${id}`),
+    GET_ARTISTS: (ids: string[]) =>
+      buildURL(`/artists`, { ids: ids.join(",") }),
+    GET_ARTIST_ALBUMS: (
+      id: string,
+      options?: {
+        limit?: number;
+        offset?: number;
+        include_groups?: AlbumGroups[];
+        market?: string;
+      }
+    ) => buildURL(`/artists/${id}/albums`, options),
+    GET_RELATED_ARTISTS: (id: string) =>
+      buildURL(`/artists/${id}/related-artists`),
+    GET_RECOMMENDATIONS: (options?: {
+      seed_artists?: string[];
+      seed_genres?: string[];
+      seed_tracks?: string[];
+      limit?: number;
+      market?: string;
+      max_acousticness?: number;
+      max_danceability?: number;
+      max_duration_ms?: number;
+      max_energy?: number;
+      max_instrumentalness?: number;
+      max_key?: number;
+      max_liveness?: number;
+      max_loudness?: number;
+      max_mode?: number;
+      max_popularity?: number;
+      max_speechiness?: number;
+      max_tempo?: number;
+      max_time_signature?: number;
+      max_valence?: number;
+      min_acousticness?: number;
+      min_danceability?: number;
+      min_duration_ms?: number;
+      min_energy?: number;
+      min_instrumentalness?: number;
+      min_key?: number;
+      min_liveness?: number;
+      min_loudness?: number;
+      min_mode?: number;
+      min_popularity?: number;
+      min_speechiness?: number;
+      min_tempo?: number;
+      min_time_signature?: number;
+      min_valence?: number;
+      target_acousticness?: number;
+      target_danceability?: number;
+      target_duration_ms?: number;
+      target_energy?: number;
+      target_instrumentalness?: number;
+      target_key?: number;
+      target_liveness?: number;
+      target_loudness?: number;
+      target_mode?: number;
+      target_popularity?: number;
+      target_speechiness?: number;
+      target_tempo?: number;
+      target_time_signature?: number;
+      target_valence?: number;
+    }) => buildURL(`/recommendations`, options),
   },
 };

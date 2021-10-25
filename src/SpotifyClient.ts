@@ -2,28 +2,61 @@ import { fetch, FetchResultTypes } from "@sapphire/fetch";
 import { Albums } from "./Endpoints/Albums";
 import { ENDPOINTS } from "./Constants";
 import { TokenResponseJSON } from "./Interfaces";
+import { Artists } from "./Endpoints/Artists";
 
 export class SpotifyClient {
-  public readonly clientId: string;
-  public readonly clientSecret: string;
+  /**
+   * @internal
+   */
+  public readonly _clientId: string;
+  /**
+   * @internal
+   */
+  public readonly _clientSecret: string;
+  /**
+   * @internal
+   */
   public _token: string | null = null;
-  public refreshInterval: NodeJS.Timer | null = null;
+  /**
+   * @internal
+   */
+  public _refreshInterval: NodeJS.Timer | null = null;
   public isAuthenticated: boolean = false;
+  /**
+   * Class that handles the Albums endpoints
+   */
   public readonly albums: Albums;
+  /**
+   * Class that handles the Artists endpoints
+   */
+  public readonly artists: Artists;
 
+  /**
+   *
+   * @param clientId The client ID of the application
+   * @param clientSecret The client secret of the application
+   */
   constructor(clientId: string, clientSecret: string) {
-    this.clientId = clientId;
-    this.clientSecret = clientSecret;
+    this._clientId = clientId;
+    this._clientSecret = clientSecret;
     this.albums = new Albums(this);
+    this.artists = new Artists(this);
   }
 
+  /**
+   * Creates a new request to the specified url
+   * @internal
+   * @param url The URL to fetch
+   * @param options The options to pass to the fetch function
+   * @returns
+   */
   request<T>(url: string, options: RequestInit = {}): Promise<T> {
     if (!this._token) {
       throw new Error("No token has been acquired yet.");
     }
 
     return fetch<T>(
-      `${ENDPOINTS.API_BASE}${url}`,
+      url,
       {
         ...options,
         headers: {
@@ -37,17 +70,18 @@ export class SpotifyClient {
 
   /**
    * Creates a refresh timer that will refresh the token in `expiresIn` milliseconds.
+   * @internal
    * @param ms time in milliseconds
    */
   createRefreshTimer(expiresIn: number): void {
-    this.refreshInterval = setTimeout(() => {
+    this._refreshInterval = setTimeout(() => {
       this.login();
     }, expiresIn * 1000);
   }
 
   destroy(): void {
-    if (this.refreshInterval) {
-      clearTimeout(this.refreshInterval);
+    if (this._refreshInterval) {
+      clearTimeout(this._refreshInterval);
     }
   }
 
@@ -65,7 +99,7 @@ export class SpotifyClient {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
             Authorization: `Basic ${Buffer.from(
-              `${this.clientId}:${this.clientSecret}`
+              `${this._clientId}:${this._clientSecret}`
             ).toString("base64")}`,
           },
           body: new URLSearchParams({ grant_type: "client_credentials" }),

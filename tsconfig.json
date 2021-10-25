@@ -100,9 +100,10 @@
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"],
   "typedocOptions": {
-    "entryPoints": "src",
+    "entryPoints": ["src"],
+    "entryPointStrategy": "expand",
     "out": "docs",
-    "theme": "./node_modules/typedoc-darker-theme/bin/default/",
+    // "theme": "./node_modules/typedoc-darker-theme/bin/default/",
     "name": "Quick Spotify API Wrapper",
     "includeVersion": true
   }

@@ -11,7 +11,7 @@ class AlbumsTest {
     await client.login();
   }
 
-  @test async "should get an album"() {
+  @test async "should get a single album"() {
     const album = await client.albums.getAlbum("33pt9HBdGlAbRGBHQgsZsU");
     expect(album).to.be.an("object").that.has.property("name", "Evolve");
   }
@@ -42,8 +42,10 @@ class AlbumsTest {
       .that.satisfies((tracks) => tracks[0].name === "Next To Me");
   }
 
-  @test async "should get an album's tracks with options"() {
-    const tracks = await client.albums.getTracks("33pt9HBdGlAbRGBHQgsZsU", 1);
+  @test async "should get an album's tracks with a limit of 1"() {
+    const tracks = await client.albums.getTracks("33pt9HBdGlAbRGBHQgsZsU", {
+      limit: 1,
+    });
     expect(tracks)
       .to.be.an("object")
       .that.has.property("items")
@@ -52,12 +54,12 @@ class AlbumsTest {
       .that.satisfies((tracks) => tracks[0].name === "Next To Me");
   }
 
-  @test async "should get an album's tracks with options and offset"() {
-    const tracks = await client.albums.getTracks(
-      "33pt9HBdGlAbRGBHQgsZsU",
-      1,
-      1
-    );
+  @test
+  async "should get an album's tracks with options and offset of 1 and a limit of 1"() {
+    const tracks = await client.albums.getTracks("33pt9HBdGlAbRGBHQgsZsU", {
+      limit: 1,
+      offset: 1,
+    });
     expect(tracks)
       .to.be.an("object")
       .that.has.property("items")
