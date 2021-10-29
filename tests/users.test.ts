@@ -1,8 +1,10 @@
 import { config } from "dotenv";
 
-config({
-  path: ".env",
-});
+if (!process.env.CI) {
+  config({
+    path: ".env",
+  });
+}
 
 import { suite, test } from "mocha-typescript";
 import { expect } from "chai";
