@@ -1,9 +1,17 @@
+import { config } from "dotenv";
+
+config({
+  path: ".env",
+});
+
 import { suite, test } from "mocha-typescript";
 import { expect } from "chai";
 import { SpotifyClient } from "../src";
-import { CLIENT_ID, CLIENT_SECRET } from "./config.json";
 
-const client = new SpotifyClient(CLIENT_ID, CLIENT_SECRET);
+const client = new SpotifyClient(
+  process.env.TESTS_CLIENT_ID,
+  process.env.TESTS_CLIENT_SECRET
+);
 
 @suite
 class UsersTest {

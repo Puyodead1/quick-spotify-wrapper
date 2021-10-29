@@ -52,8 +52,8 @@ export class SpotifyClient {
    * @param clientSecret The client secret of the application
    */
   constructor(clientId: string, clientSecret: string) {
-    this._clientId = clientId;
-    this._clientSecret = clientSecret;
+    this._clientId = clientId.trim();
+    this._clientSecret = clientSecret.trim();
     this.albums = new Albums(this);
     this.artists = new Artists(this);
     this.search = new Search(this);

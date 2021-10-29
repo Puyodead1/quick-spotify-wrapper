@@ -4,5 +4,5 @@ gh-pages.pub
 .vscode
 dist/
 .nyc_output/
-tests/config.json
+.env
 docs/
