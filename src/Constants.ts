@@ -1,4 +1,9 @@
-import { AlbumGroup, SearchIncludeExternalTypes, SearchType } from "Interfaces";
+import {
+  AlbumGroup,
+  PlaylistAdditionalTypes,
+  SearchIncludeExternalTypes,
+  SearchType,
+} from "Interfaces";
 import { join } from "path/posix";
 
 function buildURL(endpoint: string, params?: any) {
@@ -141,5 +146,19 @@ export const ENDPOINTS = {
       buildURL(`/playlists/${playlist_id}/followers/contains`, {
         ids: user_ids.join(","),
       }),
+  },
+  PLAYLISTS: {
+    GET_PLAYLIST: (
+      id: string,
+      options?: {
+        additional_types?: PlaylistAdditionalTypes[];
+        market?: string;
+      }
+    ) =>
+      buildURL(`/playlists/${id}`, {
+        additional_types: options?.additional_types?.join(","),
+        ...options,
+      }),
+    UPDATE_PLAYLIST_DETAILS: (id: string) => buildURL(`/playlists/${id}`),
   },
 };

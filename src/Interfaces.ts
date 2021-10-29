@@ -12,6 +12,7 @@ export type SearchType =
   | "episode";
 export type CopyrightType = "C" | "P";
 export type SearchIncludeExternalTypes = "audio";
+export type PlaylistAdditionalTypes = "track" | "episode";
 
 export interface HTTPErrorObject {
   error: {
@@ -730,6 +731,10 @@ export interface Playlist {
    */
   images: Image[];
   /**
+   * The name of the playlist.
+   */
+  name: string;
+  /**
    * The user who owns the playlist.
    */
   owner: User;
@@ -744,7 +749,7 @@ export interface Playlist {
   /**
    * The tracks of the playlist.
    */
-  tracks: Track[];
+  tracks: PaginatedTracks;
   /**
    * The object type: "playlist"
    */
