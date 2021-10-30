@@ -1,7 +1,8 @@
 import { config } from "dotenv";
+import { resolve } from "path";
 
 config({
-  path: ".env",
+  path: resolve(__dirname, ".env"),
 });
 
 import { suite, test } from "mocha-typescript";
