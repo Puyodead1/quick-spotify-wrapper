@@ -1,18 +1,18 @@
-/* 
+/*
  *  Simple Javascript wrapper for the Spotify API
- *  
+ *
  *  Copyright (c) 2021 Puyodead1
- *  
+ *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- *  
+ *
  *  The above copyright notice and this permission notice shall be included in all
  *  copies or substantial portions of the Software.
- *  
+ *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,24 +46,51 @@ class Spotify {
   constructor(clientID, clientSecret) {
     this._clientID = clientID;
     this._clientSecret = clientSecret;
-    this._token = null;
-    this.albums = null;
-    this.artists = null;
-    this.browse = null;
-    this.playlists = null;
-    this.tracks = null;
-    this.users = null;
+
+    this.albums = new Albums(this);
+    this.artists = new Artists(this);
+    this.browse = new Browse(this);
+    this.playlists = new Playlists(this);
+    this.tracks = new Tracks(this);
+    this.users = new Users(this);
+
     this.authenticated = false;
+    this._access_token = null;
+    this._token_type = null;
+    this._expires_in = null;
+
+    this.nextRequest = null;
 
     this.API_BASE = "https://api.spotify.com/v1";
   }
 
   /**
-   * Attempts to log the client in and obtain a token
-   * @async
-   * @returns Promise
+   * Gets initial tokens and create a refresh timer
+   * @returns void
    */
   async login() {
+    if (this.nextRequest) return;
+
+    try {
+      await this.getToken();
+      console.debug(`Refreshing token in ${this._expires_in} seconds`);
+
+      this.nextRequest = setTimeout(async () => {
+        console.debug("Refreshing token...");
+        await this.getToken();
+        console.debug(`Refreshing token in ${this._expires_in} seconds`);
+      }, this._expires_in * 1000);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  /**
+   * Attempts to log the client in and obtain a token
+   * @async
+   * @returns object promise with access token, token type and expires in
+   */
+  async getToken() {
     return new Promise((resolve, reject) => {
       fetch("https://accounts.spotify.com/api/token", {
         method: "post",
@@ -76,28 +103,15 @@ class Spotify {
       })
         .then((res) => res.json())
         .then((res) => {
-          this._token = res.access_token;
-          this.authenticated = true;
-          this.albums = new Albums(this);
-          this.artists = new Artists(this);
-          this.browse = new Browse(this);
-          this.playlists = new Playlists(this);
-          this.tracks = new Tracks(this);
-          this.users = new Users(this);
+          this._access_token = res.access_token;
+          this._token_type = res.token_type;
+          this._expires_in = res.expires_in;
           resolve();
         })
         .catch((error) => {
           reject(error);
         });
     });
-  }
-
-  /**
-   * Returns a boolean if client has been logged in
-   * @returns Boolean
-   */
-  authenticated() {
-    return this.authenticated;
   }
 
   /**
@@ -109,7 +123,7 @@ class Spotify {
     return new Promise((resolve, reject) => {
       fetch(this.API_BASE + url, {
         method: "get",
-        headers: { Authorization: `Bearer ${this._token}` },
+        headers: { Authorization: `${this._token_type} ${this._access_token}` },
       })
         .then((res) => res.json())
         .then((res) => {

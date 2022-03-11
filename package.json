@@ -1,6 +1,6 @@
 {
   "name": "quick-spotify-wrapper",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A Simple wrapper around the spotify API",
   "main": "index.js",
   "scripts": {},
@@ -17,9 +17,8 @@
   "author": "Puyodead1",
   "license": "MIT",
   "dependencies": {
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.7"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Puyodead1/quick-spotify-wrapper.git"

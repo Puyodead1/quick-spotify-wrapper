@@ -6,7 +6,7 @@ Full documentation can be found [here](https://puyodead1.github.io/quick-spotify
 
 For support you can join my [Discord Server](https://discord.gg/tMzrSxQ).
 
-# Creating a client
+# Creating a Client
 
 Example:
 
@@ -19,6 +19,8 @@ const spotify = new Spotify("client id", "client secret");
   // you can now use the library and make api calls!
 })();
 ```
+
+The client will handle automatically refreshing the authentication token.
 
 # Authentication Status
 
