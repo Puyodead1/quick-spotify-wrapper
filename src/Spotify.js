@@ -64,6 +64,15 @@ class Spotify {
     this.API_BASE = "https://api.spotify.com/v1";
   }
 
+  createTimer() {
+    this.nextRequest = setTimeout(async () => {
+      console.debug("Refreshing token...");
+      await this.getToken();
+      this.createTimer();
+      console.debug(`Refreshing token in ${this._expires_in} seconds`);
+    }, this._expires_in * 1000);
+  }
+
   /**
    * Gets initial tokens and create a refresh timer
    * @returns void
@@ -73,13 +82,8 @@ class Spotify {
 
     try {
       await this.getToken();
+      this.createTimer();
       console.debug(`Refreshing token in ${this._expires_in} seconds`);
-
-      this.nextRequest = setTimeout(async () => {
-        console.debug("Refreshing token...");
-        await this.getToken();
-        console.debug(`Refreshing token in ${this._expires_in} seconds`);
-      }, this._expires_in * 1000);
     } catch (e) {
       throw e;
     }
@@ -95,9 +99,7 @@ class Spotify {
       fetch("https://accounts.spotify.com/api/token", {
         method: "post",
         headers: {
-          Authorization: `Basic ${new Buffer.from(
-            `${this._clientID}:${this._clientSecret}`
-          ).toString("base64")}`,
+          Authorization: `Basic ${new Buffer.from(`${this._clientID}:${this._clientSecret}`).toString("base64")}`,
         },
         body: new URLSearchParams({ grant_type: "client_credentials" }),
       })
